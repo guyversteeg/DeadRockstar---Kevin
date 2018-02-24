@@ -1,0 +1,57 @@
+<html>
+   <head>
+      <title>Dead Rockstars</title>
+      <style>
+         .card {
+            border: 1px solid #ccc;
+            width: 260px;
+            height: 400px;
+            padding: 20px;
+            background-color: #eee;
+            float:left;
+            margin:15px;
+            position: relative;
+         }
+         .card .photo {
+            display: block;
+            margin:auto;
+            padding-bottom: 30px;
+            width: 200px;
+            max-height: 280px;
+         }
+         .card .caption {
+            text-align: center;
+         }
+         .card .deleteButton {
+            position:absolute;
+            bottom: 10px;
+            right: 10px;
+         }
+      </style>
+   </head>
+   <body>
+      <h1>Dead Rockstars</h1>
+      <hr>
+      <% if(list.length == 0) {
+         %><h4>There are no rockstars...</h4><p>Use a POST request to add one...</p><%
+      } else if(list.length == 0) {
+         %><h4>There is one rockstar!</h4><p>Use a POST request to add more, or a DELETE method to remove this one...</p><%
+      } else {
+         %><h4>There are <%=list.length %> dead rockstars.</h4><%
+      }
+      list.forEach(function(star){ %>
+         <div class="card">
+            <img class="photo" src="<%= star.imageURL || "placeholder.png"  %>">
+            <div class="caption">
+               <b><%= star.name %> <%= star.surname %></b> died at the age of <%= star.age %>.<br>
+               reason: <%= star.why %><br><br>
+               <% if(star.band) { %>
+                  <%= star.name %> was a member of <i><%= star.band %></i>
+               <% } %><br>
+               <a href="/stars/<%= star._id %>">details...</a>
+            </div>
+            <button class="deleteButton">delete</button>
+         </div>
+      <% }) %>
+   </body>
+</html>

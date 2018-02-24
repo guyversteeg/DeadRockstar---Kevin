@@ -1,0 +1,18 @@
+<html>
+   <head>
+      <title><%= star.name+" "+star.surname %> | Dead Rockstar</title>
+   </head>
+   <body>
+      <h2><%= star.name+" "+star.surname %></h2>
+      <div>
+         <img src="<%= star.imageURL || "placeholder.png" %>">
+      </div>
+      <div>
+         age: <b><%= star.age %></b><br>
+         reason: <b><%= star.why %></b><br>
+         <% if(star.band) { %>
+            band: <b><%= star.band %></b>
+         <% } %>
+      </div>
+   </body>
+</html>
